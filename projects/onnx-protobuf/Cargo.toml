@@ -3,17 +3,12 @@ name = "onnx-protobuf"
 version = "0.1.0"
 authors = ["Łukasz Kurowski <crackcomm@gmail.com>"]
 edition = "2021"
-license = "MIT"
+license = "MPL-2.0"
 description = "ONNX protocol buffers messages."
 homepage = "https://github.com/oovm/onnx-protocol"
 repository = "https://github.com/oovm/onnx-protocol.git"
-build = "build.rs"
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
 prost = "0.11.8"
 bytes = "1.4.0"
-
-[build-dependencies]
-prost-build = "0.11.8"

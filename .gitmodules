@@ -2,3 +2,9 @@
 	path = projects/onnx
 	url = https://github.com/onnx/onnx.git
 	branch = rel-1.6.1
+[submodule "projects/onnx-protobuf/projects/onnx"]
+	path = projects/onnx-protobuf/projects/onnx
+	url = https://github.com/onnx/onnx.git
+[submodule "projects/onnx"]
+	path = projects/onnx
+	url = https://github.com/onnx/onnx.git

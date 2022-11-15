@@ -1,5 +1,5 @@
 [package]
-name = "safe-tensors-load"
+name = "safe-tensors-loader"
 version = "0.0.0"
 authors = ["Aster <192607617@qq.com>"]
 description = "..."
@@ -10,9 +10,10 @@ license = "MPL-2.0"
 edition = "2021"
 
 [dependencies]
-clap = "4.1.8"
+
 
 [dev-dependencies]
+prost-build = "0.11.8"
 
 [features]
 default = []
