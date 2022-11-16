@@ -1,10 +1,19 @@
+use std::path::PathBuf;
+
 #[test]
 fn ready() {
     println!("it works!")
 }
 
 #[test]
-fn main() {
-    prost_build::compile_protos(&["../onnx/onnx/onnx.proto3"], &["../onnx/onnx"]).unwrap();
-    std::fs::copy("foo.txt", "bar.txt")?;
+#[ignore]
+fn build_protobuf() -> std::io::Result<()> {
+    let projects = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../").canonicalize()?;
+    protobuf_codegen_pure::Codegen::new()
+        .out_dir(projects.join("onnx-protobuf/src/protos"))
+        .inputs(&[projects.join("onnx/onnx/onnx.proto")])
+        .include(projects.join("onnx/onnx"))
+        .run()
+        .expect("Codegen failed.");
+    Ok(())
 }
