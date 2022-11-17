@@ -1,13 +1,13 @@
 [package]
 name = "onnx-protobuf"
-version = "0.1.0"
+version = "0.2.0"
 authors = ["Łukasz Kurowski <crackcomm@gmail.com>"]
 edition = "2021"
 license = "MPL-2.0"
 description = "ONNX protocol buffers messages."
+documentation = "https://docs.rs/onnx-protobuf"
 homepage = "https://github.com/oovm/onnx-protocol"
 repository = "https://github.com/oovm/onnx-protocol.git"
-
 
 [dependencies]
 protobuf = "3.2.0"
