@@ -1,5 +1,8 @@
 use std::path::PathBuf;
+
 use protobuf_codegen::Codegen;
+
+use onnx_protobuf::load_onnx;
 
 #[test]
 fn ready() {
@@ -18,4 +21,10 @@ fn build_protobuf() -> std::io::Result<()> {
         .run()
         .expect("Codegen failed.");
     Ok(())
+}
+
+#[test]
+fn test_load() {
+    let onnx = load_onnx("tests/noise0_model.onnx");
+    println!("{:?}", onnx);
 }

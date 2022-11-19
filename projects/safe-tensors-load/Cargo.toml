@@ -4,12 +4,14 @@ version = "0.0.0"
 authors = ["Aster <192607617@qq.com>"]
 description = "..."
 repository = "https://github.com/oovm/sub_projects"
-documentation = "https://docs.rs/sub_projects"
+documentation = "https://docs.rs/safe-tensors-loader"
 readme = "Readme.md"
 license = "MPL-2.0"
 edition = "2021"
 
-[dependencies]
+[dependencies.onnx-protobuf]
+version = "0.2.0"
+path = "../onnx-protobuf"
 
 
 [dev-dependencies]
