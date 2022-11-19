@@ -2,7 +2,7 @@ use std::path::PathBuf;
 
 use protobuf_codegen::Codegen;
 
-use onnx_protobuf::load_onnx;
+use onnx_protobuf::{load_model, load_attribute};
 
 #[test]
 fn ready() {
@@ -23,8 +23,19 @@ fn build_protobuf() -> std::io::Result<()> {
     Ok(())
 }
 
+//_model = onnx.load("in.onnx")
+// INTIALIZERS = _model.graph.initializer
+// weights = {}
+// for initializer in INTIALIZERS:
+//     w = numpy_helper.to_array(initializer)
+//     weights[initializer.name] = w
+//
+//
+// save_file(weights, "out.safetensors")
 #[test]
 fn test_load() {
-    let onnx = load_onnx("tests/noise0_model.onnx");
-    println!("{:?}", onnx);
+    let graph = load_model("tests/noise0_model.onnx").unwrap().graph;
+    for initializer in &graph.initializer {
+        println!("{:#?}", initializer.data_type);
+    }
 }
