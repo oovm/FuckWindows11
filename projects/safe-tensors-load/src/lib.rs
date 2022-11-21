@@ -1,3 +1,8 @@
+pub use errors::{Error, Result};
+
+pub use crate::onnx::convert_onnx;
+
 mod errors;
 
-pub use errors::{Error, Result};
+mod onnx;
+

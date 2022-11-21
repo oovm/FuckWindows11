@@ -1,8 +1,8 @@
-use std::path::PathBuf;
+use std::path::{Path, PathBuf};
 
 use protobuf_codegen::Codegen;
 
-use onnx_protobuf::{load_model, load_attribute};
+use safe_tensors_loader::convert_onnx;
 
 #[test]
 fn ready() {
@@ -33,9 +33,9 @@ fn build_protobuf() -> std::io::Result<()> {
 //
 // save_file(weights, "out.safetensors")
 #[test]
-fn test_load() {
-    let graph = load_model("tests/noise0_model.onnx").unwrap().graph;
-    for initializer in &graph.initializer {
-        println!("{:#?}", initializer.data_type);
-    }
+fn test_onnx() {
+    convert_onnx(
+        Path::new("tests/noise0_model.onnx"),
+        Path::new("tests/noise0_model.safetensors"),
+    ).unwrap();
 }

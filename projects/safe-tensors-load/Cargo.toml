@@ -9,9 +9,17 @@ readme = "Readme.md"
 license = "MPL-2.0"
 edition = "2021"
 
+
+[dependencies]
+log = "0.4.17"
+safetensors = "0.3.0"
+zip = "0.6.4"
+serde-pickle = "1.1.1"
+
 [dependencies.onnx-protobuf]
-version = "0.2.0"
+version = "0.2.1"
 path = "../onnx-protobuf"
+features = ["safetensors"]
 
 
 [dev-dependencies]
