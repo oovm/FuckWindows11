@@ -14,6 +14,12 @@ clap = { version = "4.1.8", features = ["derive"] }
 anyhow = "1.0.69"
 walkdir = "2.3.2"
 globset = "0.4.10"
+log = "0.4.17"
+env_logger = "0.10.0"
+
+[dependencies.safe-tensors-loader]
+path = "../safe-tensors-load"
+version = "0.0.0"
 
 [dev-dependencies]
 
