@@ -14,6 +14,7 @@ pub struct Application {
 }
 
 pub fn main() -> anyhow::Result<()> {
+    env_logger::init();
     let app = Application::parse();
     app.run()
 }

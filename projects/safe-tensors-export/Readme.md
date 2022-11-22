@@ -9,7 +9,7 @@ cargo install safe-tensors-export
 ## Usage
 
 ```sh
-safe-tensors-export -d models -p *.onnx,*.pb
+RUST_LOG=info safe-tensors-export -p "*.onnx,*.pb"
 ```
 
 All parameters:

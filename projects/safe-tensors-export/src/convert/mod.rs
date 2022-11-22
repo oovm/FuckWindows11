@@ -2,6 +2,7 @@ use std::fs::{remove_file};
 use std::path::{Path, PathBuf};
 
 use globset::{Glob, GlobSet, GlobSetBuilder};
+use url::Url;
 use walkdir::WalkDir;
 use safe_tensors_loader::convert_onnx;
 
@@ -14,7 +15,6 @@ impl Application {
             let entry = entry?;
             let path = entry.path();
             if path.is_file() && glob.is_match(path) {
-                log::info!("converting: {}", path.display());
                 if let Err(e) = convert_file(path) {
                     log::error!("{}: {}", path.display(), e);
                 }
@@ -51,15 +51,22 @@ impl Application {
 
 
 fn convert_file(path: &Path) -> anyhow::Result<()> {
-    if  path.ends_with("safetensors") {
+    if is_extension(path, "safetensors") {
         return Ok(());
     }
-    if path.ends_with("onnx") {
+    if is_extension(path, "onnx") {
         let output = path.with_extension("safetensors");
         if output.exists() {
             remove_file(&output)?;
         }
+        let url1 = Url::from_file_path(path).unwrap();
+        let url2 = Url::from_file_path(&output).unwrap();
+        log::info!("Convert onnx: \n    {} \n => {}", url1, url2);
         convert_onnx(path, &output)?;
     }
     Ok(())
+}
+
+fn is_extension(path: &Path, extension: &str) -> bool {
+    path.extension().map(|e| e.eq_ignore_ascii_case(extension)).unwrap_or(false)
 }
