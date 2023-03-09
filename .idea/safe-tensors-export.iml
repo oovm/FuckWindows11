@@ -10,6 +10,7 @@
       <sourceFolder url="file://$MODULE_DIR$/projects/safe-tensors-load/tests" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
       <excludeFolder url="file://$MODULE_DIR$/projects/onnx" />
+      <excludeFolder url="file://$MODULE_DIR$/projects/tensorflow" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

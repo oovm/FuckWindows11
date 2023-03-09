@@ -14,3 +14,5 @@ target/
 Cargo.lock
 *.onnx
 *.safetensors
+projects/onnx
+projects/tensorflow
