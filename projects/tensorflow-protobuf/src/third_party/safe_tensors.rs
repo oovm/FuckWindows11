@@ -1,5 +1,6 @@
 use safetensors::{Dtype, SafeTensorError};
 use safetensors::tensor::TensorView;
+use crate::protos::tensor::TensorProto;
 
 use crate::TensorProto;
 
@@ -9,9 +10,7 @@ impl<'a, 'b> TryFrom<&'a TensorProto> for TensorView<'b>
     type Error = SafeTensorError;
 
     fn try_from(tensor: &'a TensorProto) -> Result<Self, Self::Error> {
-        let dtype = get_type(&tensor.data_type);
-        let shape = get_shape(tensor.dims.as_slice());
-        TensorView::new(dtype, shape, tensor.raw_data())
+        todo!()
     }
 }
 
