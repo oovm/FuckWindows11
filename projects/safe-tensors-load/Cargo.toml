@@ -2,8 +2,8 @@
 name = "safe-tensors-loader"
 version = "0.0.0"
 authors = ["Aster <192607617@qq.com>"]
-description = "..."
-repository = "https://github.com/oovm/sub_projects"
+description = "Load weights as safe tensors"
+repository = "https://github.com/oovm/safe-tensors-export"
 documentation = "https://docs.rs/safe-tensors-loader"
 readme = "Readme.md"
 license = "MPL-2.0"

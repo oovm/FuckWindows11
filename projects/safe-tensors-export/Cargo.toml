@@ -1,10 +1,10 @@
 [package]
 name = "safe-tensors-export"
-version = "0.1.0"
+version = "0.1.1"
 authors = ["Aster <192607617@qq.com>"]
 description = "..."
-repository = "https://github.com/oovm/sub_projects"
-documentation = "https://docs.rs/sub_projects"
+repository = "https://github.com/oovm/safe-tensors-export"
+documentation = "https://docs.rs/safe-tensors-export"
 readme = "Readme.md"
 license = "MPL-2.0"
 edition = "2021"

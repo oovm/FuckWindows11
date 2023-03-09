@@ -1,8 +1,6 @@
-use std::path::{Path, PathBuf};
+use std::path::PathBuf;
 
 use protobuf_codegen::Codegen;
-
-use safe_tensors_loader::convert_onnx;
 
 #[test]
 fn ready() {
@@ -11,7 +9,7 @@ fn ready() {
 
 #[test]
 #[ignore]
-fn build_protobuf() -> std::io::Result<()> {
+fn build_onnx_proto() -> std::io::Result<()> {
     let projects = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../").canonicalize()?;
     Codegen::new()
         .pure()
@@ -23,19 +21,16 @@ fn build_protobuf() -> std::io::Result<()> {
     Ok(())
 }
 
-//_model = onnx.load("in.onnx")
-// INTIALIZERS = _model.graph.initializer
-// weights = {}
-// for initializer in INTIALIZERS:
-//     w = numpy_helper.to_array(initializer)
-//     weights[initializer.name] = w
-//
-//
-// save_file(weights, "out.safetensors")
 #[test]
-fn test_onnx() {
-    convert_onnx(
-        Path::new("tests/noise0_model.onnx"),
-        Path::new("tests/noise0_model.safetensors"),
-    ).unwrap();
+#[ignore]
+fn build_tensorflow_proto() -> std::io::Result<()> {
+    let projects = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../").canonicalize()?;
+    Codegen::new()
+        .pure()
+        .out_dir(projects.join("tensorflow-protobuf/src/protos"))
+        .inputs(&[projects.join("tensorflow/tensorflow/core/framework/function.proto")])
+        .include(projects.join("tensorflow/tensorflow/"))
+        .run()
+        .expect("Codegen failed.");
+    Ok(())
 }

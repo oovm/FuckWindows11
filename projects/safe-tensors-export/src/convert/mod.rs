@@ -1,9 +1,10 @@
-use std::fs::{remove_file};
+use std::fs::remove_file;
 use std::path::{Path, PathBuf};
 
 use globset::{Glob, GlobSet, GlobSetBuilder};
 use url::Url;
 use walkdir::WalkDir;
+
 use safe_tensors_loader::convert_onnx;
 
 use crate::Application;
@@ -24,17 +25,7 @@ impl Application {
     }
     fn get_directory(&self) -> anyhow::Result<PathBuf> {
         let root = PathBuf::from(".");
-        let directory = match &self.directory {
-            Some(d) if d.is_absolute() => d.clone(),
-            Some(d) if d.starts_with("/") => d.clone(),
-            Some(d) => root.join(d),
-            None => root,
-        };
-        let directory = directory.canonicalize()?;
-        if !directory.is_dir() {
-            Err(anyhow::Error::msg("path must a directory"))?
-        }
-        Ok(directory)
+        Ok(root)
     }
     fn get_glob(&self) -> anyhow::Result<GlobSet> {
         let mut glob = GlobSetBuilder::new();
@@ -50,14 +41,19 @@ impl Application {
 }
 
 
-fn convert_file(path: &Path) -> anyhow::Result<()> {
+fn convert_file(path: &Path, overwrite: bool) -> anyhow::Result<()> {
     if is_extension(path, "safetensors") {
         return Ok(());
     }
     if is_extension(path, "onnx") {
         let output = path.with_extension("safetensors");
         if output.exists() {
-            remove_file(&output)?;
+            if overwrite {
+                remove_file(&output)?;
+            } else {
+                log::info!("Skip existing file: {}", Url::from_file_path(output).unwrap());
+                return Ok(());
+            }
         }
         let url1 = Url::from_file_path(path).unwrap();
         let url2 = Url::from_file_path(&output).unwrap();

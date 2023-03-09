@@ -5,6 +5,7 @@ default-members = [
 ]
 exclude = [
     "projects/.DS_Store",
+    "projects/tensorflow",
     "projects/onnx"
 ]
 

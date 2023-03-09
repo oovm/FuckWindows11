@@ -4,11 +4,16 @@ use clap::Parser;
 
 mod convert;
 
+/// Export ONNX models to SafeTensors format
 #[derive(Parser)]
 #[command(author, version, about, long_about = None)]
 pub struct Application {
+    /// Overwrite existing files
+    overwrite: bool,
+    /// Config file for the export
     #[arg(short, long)]
-    directory: Option<PathBuf>,
+    config: Option<PathBuf>,
+    /// Pattern to match files
     #[arg(short, long)]
     pattern: Option<String>,
 }
